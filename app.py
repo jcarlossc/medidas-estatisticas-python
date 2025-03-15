@@ -58,3 +58,24 @@ print("Resultado da função mediana(): ", mediana(dados2))        # Chamada da 
 print("Resultado da função interna: ", np.median(dados2).round(2))         # Função interna do Numpy para comparação dos valores
 
 print(50 * "-")
+
+print("* Moda:")
+
+dados3 = np.array([25, 13, 9, 11, 13, 20, 15, 12, 21, 25, 25])  # Array do tipo Numpy
+
+def moda(valor):                               # Função do cálculo da Moda
+    if len(valor) == 0:                              # Testa se Array está vazio
+        return 'O Array está vazio.'                 # Retorna Mensagem, caso vazio
+    elif len(valor) == 1:                            # Testa se Array contem um elemento
+        return valor[0]                              # Retorna elemento
+    else:
+        serie = pd.Series(valor)                     # Cria uma série Pandas
+        serie = serie.value_counts()                 # Conta as quantidades de elementos
+        moda = serie.index[0]                        # Obtem o elemento de maior frequência
+        return moda                                  # Retorna Moda
+    
+print("Resultado da função moda(): ", moda(dados3) )    
+
+print("Resultado da função interna: ", mode(dados3)  ) 
+
+print(50 * "-")
