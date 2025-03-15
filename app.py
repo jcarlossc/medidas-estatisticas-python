@@ -12,14 +12,14 @@ print("* Média Aritmética:")
 
 dados1 = np.array([10, 10, 10, 11, 12, 13, 14, 15, 15, 17, 20, 25])  # Array do tipo Numpy
 
-def media_aritmetica(lista):                 # Função de cálculo da Média Aritmética
-    if len(lista) == 0:                            # Testa se array está vazio
+def media_aritmetica(valor):                 # Função de cálculo da Média Aritmética
+    if len(valor) == 0:                            # Testa se array está vazio
         return 'O Array está vazio.'               # Caso quantidade igual a zero, retorna mensagem
-    elif len(lista) == 1:                          # Testa se quantidade de elementos do Array é igual a um
-        return lista[0]                            # Caso quantidade igual a um, retorna lista do elemento
+    elif len(valor) == 1:                          # Testa se quantidade de elementos do Array é igual a um
+        return valor[0]                            # Caso quantidade igual a um, retorna valor do elemento
     else:
-        soma_elementos = lista.sum()               # Soma dos elementos do Array
-        quantidade = len(lista)                    # Quantidade de elementos do Array
+        soma_elementos = valor.sum()               # Soma dos elementos do Array
+        quantidade = len(valor)                    # Quantidade de elementos do Array
         media = soma_elementos / quantidade        # Calcula a média
         media = media.round(2)                     # Arredonda a valor para dois números de ponto flutuante
         return media                               # Retorna Média 
@@ -30,3 +30,31 @@ print("Resultado da função interna: ", dados1.mean().round(2))         # Funç
 
 print(50 * "-")
 
+print("* Mediana:")
+
+dados2 = np.array([25, 13, 9, 11, 20, 15, 12, 21])  # Array do tipo Numpy
+
+def mediana(valor):                          # Função de cálculo da Mediana
+    valor = np.sort(valor)                         # Ordenação do Array(a Mediana precisa de ordem)
+    if len(valor) == 0:                            # Testa se quantidade de elementos é igual a zero
+        return 'O Array está vazio.'               # Caso quantidade igual a zero, retorna mensagem
+    elif len(valor) == 1:                          # Testa se quantidade de elementos do Array é igual a um
+        return valor[0]                            # Caso quantidade igual a um, retorna valor do elemento
+    else:
+        if len(valor) % 2 == 0:                    # Testa se quantidade de elementos de Array é Par, caso seja...
+            a = (len(valor) // 2) - 1              # Obtem a divisão da quantidade de elementos do Array menos um
+            b = len(valor) // 2                    # Obtem a divisão da quantidade de elementos do Array
+            mediana = (valor[a] + valor[b]) / 2    # Soma e divide os respectivos valores
+            mediana = mediana.round(2)             # Arredonda a valor para dois números de ponto flutuante 
+            return mediana                         # Retorna Mediana
+        else:                                      # Caso a uantidade de elementos de Array seja Impar
+            a = (len(valor) // 2)                  # Obtem a divisão da quantidade de elementos do Array
+            mediana = valor[a]                     # Obtem Mediana
+            return mediana                         # Retorna Mediana
+        
+
+print("Resultado da função mediana(): ", mediana(dados2))        # Chamada da função com Array(dados2) 
+
+print("Resultado da função interna: ", np.median(dados2).round(2))         # Função interna do Numpy para comparação dos valores
+
+print(50 * "-")
