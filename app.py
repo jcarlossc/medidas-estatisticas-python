@@ -74,8 +74,46 @@ def moda(valor):                               # Função do cálculo da Moda
         moda = serie.index[0]                        # Obtem o elemento de maior frequência
         return moda                                  # Retorna Moda
     
-print("Resultado da função moda(): ", moda(dados3) )    
+print("Resultado da função moda(): ", moda(dados3))    
 
-print("Resultado da função interna: ", mode(dados3)  ) 
+print("Resultado da função interna: ", mode(dados3)) 
 
 print(50 * "-")
+
+print("Média Ponderada:")
+
+dados4 = np.array([10, 11, 12, 13, 14, 15, 15, 17, 20, 25])  # Array do tipo Numpy
+pesos = np.array([2, 3, 4, 2, 3, 5, 4, 2, 4, 5])  # Array do tipo Numpy
+
+def media_ponderada(valor1, valor2):                                     # Função do cálculo da Média Ponderada
+    if len(valor1) != len(valor2):                                            # Testa se quantidades são diferentes 
+        return 'Quantidades de elemetos diferentes entre dados4 e Pesos.'     # Retorna Mensagem caso haja diferença
+    else:
+        zipado = zip(valor1, valor2)                                          # Iterador de Tuplas
+        multiplicado = [x * y for x, y in zipado]                             # Multiplica Valor1 e Valor2
+        a = np.sum(multiplicado)                                              # Soma valores multiplicados
+        b = np.sum(valor2)                                                    # Soma Pesos
+        media_ponderada = a / b                                               # Calcula Média Ponderada
+        media_ponderada = media_ponderada.round(2)                            # # Arredonda a valor
+        return media_ponderada                                                # Retorna Média Ponderada
+    
+
+print("Resultado da função media_ponderada(): ", media_ponderada(dados4, pesos))         # Chamada da função com Array(dados4) 
+
+print("Resultado da função interna: ", np.average(dados4, weights=pesos).round(2))         # Função interna do Numpy para comparação dos valores
+
+print(50 * "-")
+
+print("Média Geométrica:")
+
+dados5 = np.array([2, 8, 32]) 
+
+def media_geometrica(valor):                                  # Função do cálculo da Média Ponderada
+    quantidade  = len(valor)                                       # Quantidade de elementos do Array 
+    valor_multip = np.prod(valor) ** (1 / quantidade)
+    media_geometrica = math.ceil(valor_multip)
+    return media_geometrica
+
+print("Resultado da função media_geometrica(): ", media_geometrica(dados5) )
+
+print("Resultado da função interna: ", np.prod(dados5) ** (1/3))
